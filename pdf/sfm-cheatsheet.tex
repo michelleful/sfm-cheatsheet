@@ -1,0 +1,254 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+
+\pdfinfo{
+  /Title (Street-Fighting Mathematics)
+  /Author (Michelle Fullwood)
+  /Subject (Street-Fighting Mathematics)
+  /Keywords (mathematics, shortcuts, maths, math, cheatsheet, street-fighting mathematics, edX, sanjoy mahajan)}
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine itemize settings to use less space
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=*}
+\def\labelitemi{\checkmark}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%My Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{Street-Fighting Mathematics}} \\
+\end{center}
+
+\begin{itemize}
+ \item Most material is from Sanjoy Mahajan's edX course 6.SFMx and book {\it Street-Fighting Mathematics}
+\end{itemize}
+
+\section{Estimating Quantities}
+
+\begin{itemize}
+ \item Break it down into parts you can estimate
+ \item Don't be afraid to lump -- errors will cancel out
+ \item Make sure the dimensions work out
+\end{itemize}
+
+\subsection{Multiplying large numbers [5.1]}
+\begin{itemize}
+ \item Convert numbers to scientific notation $k \cdot 10^{n}$ 
+ \item Lump $k$ into 1 (0 to 1.8), {\it few} (1.8 to 5.6), 10 (5.6 to 10)
+ \item {\it few}$^2$ = 10
+ \item Add powers of multiplicands $n_1, n_2, ...$
+\end{itemize}
+
+\subsection{Fractional changes [5.2]}
+
+ $$(m + \Delta m \%)(n + \Delta n \%) \approx m \cdot n + (\Delta m + \Delta n)\%$$
+
+ $$\frac{\Delta x^n}{x^n} \approx n \cdot \frac{\Delta x}{x}$$ 
+
+\begin{itemize}
+ \item \begin{tabular}{ccc}
+Ex: $m'$ & Big part ($m$) & $\Delta m$ \\
+5.3   &     5 +      & $0.3/5 \approx 6\%$ \\
+3.04  &     3 +      & $0.04/3 \approx 1.3\%$ \\ \hline
+      &    15 +      & $7.3\% \cdot 15 \approx 1.1 = 16.1$ \\
+\end{tabular}
+ \item Ex: 4\% increase in sides of rectangle $\rightarrow$ 8\% increase in area
+ \item Ex: inflation by 10\% + discount of 15\% $\rightarrow$ 5\% decrease
+ \item Ex: division, $n=-1$. $1/13 \approx 1/10 - 30\% = 0.07$
+ \item Ex: square roots, $n=1/2$. $\sqrt{10} \approx \sqrt{9} + (1/2)(1/9) \approx 3.17$ 
+\end{itemize}
+
+\subsection{Improving fractional estimations}
+
+\begin{itemize}
+ \item Increase the accuracy of the big part, e.g. by multiplying both numerator and denominator
+       by a convenient number.
+ \item Ex: $1/13 \cdot 8/8 = 8/104 \approx 8/100 - 4\% = 0.0768$
+ \item In the case of division, results in a quadratic improvement: 
+       $\frac{\Delta x^{-1}}{x^{-1}} \approx -1 \cdot \frac{\Delta x}{x} + (-1)^2 \cdot \frac{\Delta x}{x}^2 $
+ \item Ex: $\sqrt{10} = \sqrt{360}/6 \approx \sqrt{361}/6 = 19/6 \approx 3.167$
+ \item Polya's method: $\sqrt{2} = \sqrt{4/3}/\sqrt{2/3} \approx (1+(1/6))/(1-(1/6)) = 7/5 \approx 1.4$
+ \item Another ex: $\ln 2 = \ln\frac{4}{3} - \ln\frac{2}{3} \approx \frac{1}{3} - (-\frac{1}{3}) = \frac{2}{3}$
+\end{itemize}
+
+\subsection{Useful approximations}
+
+\begin{itemize}
+ \item  $(1+z)^n \approx 1+nz$, $z \ll 1$ and $nz \ll 1$
+ \item  $(1+z)^n \approx e^{nz}$, $z \ll 1$ and $nz$ unrestricted
+ \item  $\ln(1+z) \approx z$, small $z$
+ \item  $\ln(2) \approx 0.7$
+ \item  $\ln(10) \approx 2.3$
+ \item Ex: 5\% bacteria mutated per round, how many unmutated after 140 rounds? 
+       $0.95^{140} = (1-1/20)^{140} \approx e^{-140/20} \approx e^{-6.9} \approx 10^{-3} = 0.001$
+ \item $\sin \theta \approx \theta$ at small angles
+ \item $\cos \theta \approx 1-\frac{\theta^2}{2}$ at small angles
+ \item Rule of 72: if a quantity increases $x\%$ per time unit (e.g. year), it doubles in $72/x$ time units (years).
+\end{itemize}
+
+\subsection{Estimating from bounds}
+\begin{itemize}
+ \item Estimate a lower bound $l$ and an upper bound $u$ for the desired quantity
+ \item Your estimate = GeometricMean$(l,u)$ = $\sqrt{l \cdot u}$
+\end{itemize}
+
+\section{Guessing a Formula}
+
+\subsection{Dimensional analysis [1]}
+
+\begin{itemize}
+ \item You can only make meaningful comparisons with items of the same dimension.
+ \item Gather together the elements you think play a role in the formula.
+ \item Compare dimensions to guess at formula.
+ \item Ex: Impact speed $v$: dim $LT^{-1}$, $g$: dim $LT^{-2}$, height $h$: dim $L$.
+           $v \sim \sqrt{g \cdot h}$
+ \item Special cases:
+   \begin{itemize}
+     \item Exponents must be dimensionless.
+     \item $d/dt$ = `a little bit of $t$': dim $T$
+     \item $d^{2}t$ = `a little bit of a little bit of $t$': dim $T$
+     \item $dt^2$ = dim $T^{2}$ 
+     \item Summation and integration signs do not affect dimensions.
+   \end{itemize}
+ \item Warning: there will sometimes be $>1$ solution! 
+ \item Take advantage of symmetries. Consider solutions such as $a^2+ab+b^2$.
+ \item Additive terms must all have the same dimensions.
+ \item To judge between solutions find the constant term, try easy cases.
+\end{itemize}
+
+\subsection{Easy cases [2]}
+\begin{itemize}
+ \item Try $x = 0, 1, y, \infty$
+ \item Reduce dimensions
+ \item When $n$ has arbitrary range, try a small number of terms
+\end{itemize}
+
+\section{Solving formulae}
+
+\subsection{Quadratic equations [5.HW]}
+
+$$ ax^2 + bx + c = 0$$
+
+\begin{itemize}
+ \item $x \approx 0$. Remove small $ax^2$ term, $x \approx -c/b$
+ \item $x \gg 1$. Remove small $c$, $x \approx -b/a$
+ \item Substitute existing estimates of $x$ into eqn to iterate better solutions
+\end{itemize}
+
+\subsection{Evaluating integrals}
+\begin{itemize}
+ \item Can you use one of the approximations above to simplify the integrand? (ideally to exponential)
+ \item Don't be afraid to extend the bounds to infinity
+ \item $\int^{\infty}_{-\infty}e^{-\alpha t^2} \mathrm{d}t = \sqrt{\pi/\alpha}$ 
+ \item Archimedes' theorem: an inverted parabola encloses 2/3 of a rectangle's area 
+ \item $1/e$ technique: Find the width $\Delta$x that produces a change of $e$, use the resulting rectangle area as an estimate.
+ 
+ \begin{center}
+ \includegraphics[scale=1]{e_lumping.png} 
+ \end{center}
+ \vspace{-1em}
+ \item Full-Width Half-Maximum (FWHM) technique: find the width where the $y$-value is half the maximum.
+
+ \begin{center}
+ \includegraphics[scale=1]{fwhm_lumping.png} 
+ \end{center}
+
+ \end{itemize}
+ 
+\subsection{Evaluating derivatives}
+\begin{itemize}
+ \item Significant change approximation:
+ 
+ $$\frac{df}{dx} \sim \frac{\textnormal{significant $\Delta$f near x}}{\textnormal{$\Delta$x}}$$
+ 
+ \item $\frac{d^2x}{dt^2} \sim \frac{\textnormal{significant $\Delta x$}}{(\Delta t \textnormal{that produces a significant} \Delta x)^2}$ 
+ 
+\end{itemize}
+
+\subsection{Find the convergence point of a recurrence relation}
+\begin{itemize}
+ \item Substitute $x$ for $x_n$ and $x_{n-1}$ etc, and solve.
+ \item Ex: $x_{n+1} = \frac{1}{2}(x_n + \frac{2}{x_n})$, $n\geq 0$
+ \item Solve with: $x = \frac{1}{2}(x + \frac{2}{x}) \rightarrow x = \sqrt{2}$
+\end{itemize}
+
+\subsection{Finding a closed formula for a summation}
+\begin{itemize}
+ \item Use the Euler-MacLaurin summation formula:
+
+ $$ \begin{aligned} 
+ \sum^{b}_{a}f(k) = \int^{b}_{a} f(k) dk + \frac{f(b)+f(a)}{2} + \frac{f'(b)-f'(a)}{12} - \\ \frac{f^{(3)}(b)-f^{(3)}(a)}{720} + ...
+  \end{aligned} $$
+\end{itemize}
+
+% You can even have references
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
+
+Layout by dror on StackOverflow
+\end{multicols}
+\end{document}
